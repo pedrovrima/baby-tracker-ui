@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+// import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
@@ -41,7 +41,6 @@ const splitLink = split(
 );
 
 export const client = new ApolloClient({
-  
   cache: new InMemoryCache(),
   link: ApolloLink.from([splitLink]),
 });
@@ -57,12 +56,11 @@ const SleepTimes = gql`
 
 const SLEEP_CHANGED = gql`
   subscription Sub {
-    sleepChanged{
-      time,type}
-
-  
+    sleepChanged {
+      time
+      type
     }
-  
+  }
 `;
 
 // function NumberInv() {
@@ -75,7 +73,6 @@ const SLEEP_CHANGED = gql`
 //   return <h4>New comment: {data.sleepChanged.time} </h4>;}else{
 //     return ""
 //   }
-
 
 const createSleep = gql(`
 mutation  createSleep($time:DateTime!, $type:String!){
@@ -103,47 +100,79 @@ function createTimeString(date) {
   return `${hours}:${minutes > 9 ? "" : "0"}${minutes}`;
 }
 
-
 function Times() {
   const sub = useSubscription(SLEEP_CHANGED);
   const { loading, error, data } = useQuery(SleepTimes);
   const [createSleepHook, { slp_data }] = useMutation(createSleep);
-  const [sleepObj, setSleepObj] = useState({type:""})
-  useEffect(()=>{
-    if(!loading){
-    if(sub.data){
-      setSleepObj(sub.data.sleepChanged)
-    }else{
-      if(data.sleeps){
-      setSleepObj(data.sleeps[data.sleeps.length - 1])}
-    }}
-  },[data,sub.data])
+  const [sleepObj, setSleepObj] = useState({ type: "" });
 
-  if (loading ) return <p>Loading...</p>;
+  useEffect(() => {
+    if (!loading) {
+      if (sub.data) {
+        setSleepObj(sub.data.sleepChanged);
+      } else {
+        if (data.sleeps) {
+          setSleepObj(data.sleeps[data.sleeps.length - 1]);
+          console.log(TimeCalculator(data.sleeps));
+        }
+      }
+    }
+  }, [data, sub.data]);
+
+  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
   // function displayTime() {
   //   let date = new Date();
   //   let time = date.toLocaleTimeString();
   //   console.log(time);
   // }
-  
+
   // const createClock = setInterval(displayTime, 1000);
   return (
-    <>
+    <div className="container">
       <button
+        className="but"
         onClick={() => {
-        createSleepHook({ variables: { time: Date.now(), type: sleepObj.type==="start"?"end":"start"} } );
+          createSleepHook({
+            variables: {
+              time: Date.now(),
+              type: sleepObj.type === "start" ? "end" : "start",
+            },
+          });
         }}
-      >{sleepObj.type==="start"?"Acordou":"Dormiu"}</button>
-{/* <NumberInv></NumberInv> */}
-{sleepObj.type?
-
-       <p> {sleepObj.type==="start"?"Dormindo":"Acordada"} desde as {createTimeString(new Date(sleepObj.time))}</p>:""
-      
-}    </>
+      >
+        {sleepObj.type === "start" ? "Acordou" : "Dormiu"}
+      </button>
+      {/* <NumberInv></NumberInv> */}
+      {sleepObj.type ? (
+        <p>
+          {" "}
+          {sleepObj.type === "start" ? "Dormindo" : "Acordada"} desde as{" "}
+          {createTimeString(new Date(sleepObj.time))}
+        </p>
+      ) : (
+        ""
+      )}{" "}
+    </div>
   );
 }
 
+const TimeCalculator = (time_array) => {
+  time_array.reduce(
+    (accum, time, i) => {
+      console.log(accum)
+      if (i > 0) {
+        const this_time = time.time - time_array[i - 1].time;
+        if (time.type === "end") {
+          return { ...accum, asleep: accum.asleep + this_time };
+        } else {
+          return { ...accum, awake: accum.awake + this_time };
+        }
+      }else{return accum}
+    },
+    { awake: 0, asleep: 0 }
+  );
+};
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
