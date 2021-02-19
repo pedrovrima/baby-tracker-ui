@@ -146,13 +146,15 @@ desde as{" "}
 
       <button
         className="but"
-        onClick={() => {
+        onClick={(e) => {
           createSleepHook({
             variables: {
               time: Date.now(),
               type: sleepObj.type === "start" ? "end" : "start",
             },
           });
+
+          e.target.blur()
         }}
       >
         {sleepObj.type === "start" ? "Acordou" : "Dormiu"}
