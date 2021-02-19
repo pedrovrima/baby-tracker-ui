@@ -129,7 +129,21 @@ function Times() {
 
   // const createClock = setInterval(displayTime, 1000);
   return (
-    <div className="container">
+    <div
+      className={`${
+        sleepObj.type === "start" ? "container-blue" : "container-green"
+      } container`}
+    >
+      <h1>
+        {" "}
+        Morena está {sleepObj.type === "start" ? "dormindo" : "acordada"}
+      </h1>
+      <h3>
+        {" "}
+desde as{" "}
+        {createTimeString(new Date(sleepObj.time))}
+      </h3>
+
       <button
         className="but"
         onClick={() => {
@@ -144,15 +158,6 @@ function Times() {
         {sleepObj.type === "start" ? "Acordou" : "Dormiu"}
       </button>
       {/* <NumberInv></NumberInv> */}
-      {sleepObj.type ? (
-        <p>
-          {" "}
-          {sleepObj.type === "start" ? "Dormindo" : "Acordada"} desde as{" "}
-          {createTimeString(new Date(sleepObj.time))}
-        </p>
-      ) : (
-        ""
-      )}{" "}
     </div>
   );
 }
@@ -160,7 +165,7 @@ function Times() {
 const TimeCalculator = (time_array) => {
   time_array.reduce(
     (accum, time, i) => {
-      console.log(accum)
+      console.log(accum);
       if (i > 0) {
         const this_time = time.time - time_array[i - 1].time;
         if (time.type === "end") {
@@ -168,7 +173,9 @@ const TimeCalculator = (time_array) => {
         } else {
           return { ...accum, awake: accum.awake + this_time };
         }
-      }else{return accum}
+      } else {
+        return accum;
+      }
     },
     { awake: 0, asleep: 0 }
   );
