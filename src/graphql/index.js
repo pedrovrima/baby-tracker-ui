@@ -46,6 +46,7 @@ const httpLink = new HttpLink({
   export const SleepTimes = gql`
     query getSleep {
       sleeps {
+          id
         time
         type
       }
@@ -55,6 +56,7 @@ const httpLink = new HttpLink({
   export const SLEEP_CHANGED = gql`
     subscription Sub {
       sleepChanged {
+          id
         time
         type
       }
@@ -75,6 +77,7 @@ const httpLink = new HttpLink({
   export const createSleep = gql(`
   mutation  createSleep($time:DateTime!, $type:String!){
           createSleep(time:$time,  type:$type){
+              id
             type
             time
   }}`);
