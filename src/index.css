@@ -26,10 +26,13 @@ code {
   width: 30vh;
   font-weight: bold;
   cursor: pointer;
+  margin-bottom: 5vh;
 
 }
 
 .but:focus {
+  border:none;
+
   box-shadow: 
   3px 3px 16px  rgba(0, 0, 0, 0.25),
   2px 2px 1px  rgba(255, 255, 255, 0.3);
@@ -44,7 +47,7 @@ code {
   display:flex;
   flex-direction: column;
   justify-content:center;
-}
+} 
 
 .container-green{
   background-color: #b7d783;
@@ -68,7 +71,7 @@ code {
 
 }
 
-.container-blue h3 {
+.container-blue h3, a {
   color: #47797f;
 
 }
@@ -80,7 +83,7 @@ code {
 
 }
 
-.container-green h3 {
+.container-green h3, a {
   color: #697e46;
 
 }
