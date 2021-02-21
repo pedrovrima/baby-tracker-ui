@@ -71,7 +71,7 @@ code {
 
 }
 
-.container-blue h3, a {
+.container-blue h3, .update_button {
   color: #47797f;
 
 }
@@ -83,14 +83,19 @@ code {
 
 }
 
-.container-green h3, a {
+.container-green h3, .update_button {
   color: #697e46;
 
 }
 
+.update_button{
+  border:none;
+  background-color: inherit;
+}
 
-
-
+.update_button:focus{
+  border:none;
+}
 
 .container h1 {
   text-align: center;

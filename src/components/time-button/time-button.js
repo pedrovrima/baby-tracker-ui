@@ -59,7 +59,7 @@ function TimeButton() {
           {sleepObj.type === "start" ? "Acordou" : "Dormiu"}
         </button>
 
-        <a style={{cursor:"pointer"}} onClick={(e) => {console.log("ref");refetch()}}>Atualizado as {createTimeString(sleepObj.last_load)}</a>
+        <button className="update_button" style={{cursor:"pointer"}} onClick={(e) => {console.log("ref");refetch()}}>Atualizado as {createTimeString(sleepObj.last_load)}</button>
 
         {/* <NumberInv></NumberInv> */}
       </div>
