@@ -77,7 +77,8 @@ const SLEEP_CHANGED = gql`
 const createSleep = gql(`
 mutation  createSleep($time:DateTime!, $type:String!){
         createSleep(time:$time,  type:$type){
-   time
+          type
+          time
 }}`);
 
 console.log("here");
@@ -138,11 +139,7 @@ function Times() {
         {" "}
         Morena está {sleepObj.type === "start" ? "dormindo" : "acordada"}
       </h1>
-      <h3>
-        {" "}
-desde as{" "}
-        {createTimeString(new Date(sleepObj.time))}
-      </h3>
+      <h3> desde as {createTimeString(new Date(sleepObj.time))}</h3>
 
       <button
         className="but"
@@ -152,9 +149,9 @@ desde as{" "}
               time: Date.now(),
               type: sleepObj.type === "start" ? "end" : "start",
             },
-          });
+          }).then(res=>setSleepObj(res.data.createSleep));
 
-          e.target.blur()
+          e.target.blur();
         }}
       >
         {sleepObj.type === "start" ? "Acordou" : "Dormiu"}
