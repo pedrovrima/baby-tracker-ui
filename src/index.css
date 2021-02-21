@@ -71,7 +71,7 @@ code {
 
 }
 
-.container-blue h3, .update_button {
+.container-blue :is( h3, .update_button) {
   color: #47797f;
 
 }
@@ -83,7 +83,7 @@ code {
 
 }
 
-.container-green h3, .update_button {
+.container-green :is(h3, .update_button) {
   color: #697e46;
 
 }
@@ -110,5 +110,16 @@ code {
 
 .container-blue {
   background-color: #85cfd8;
+
+}
+
+
+.container-blue .loader {
+  fill: #47797f;
+
+}
+
+.container-green .loader {
+  fill: #697e46;
 
 }

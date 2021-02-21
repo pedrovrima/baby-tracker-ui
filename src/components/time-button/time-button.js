@@ -1,11 +1,11 @@
 import {SLEEP_CHANGED,SleepTimes,createSleep} from "../../graphql"
-import {useQuery,useMutation, useSubscription} from "@apollo/client"
+import {useQuery,useMutation, useSubscription, NetworkStatus} from "@apollo/client"
 import React,{useState,useEffect} from "react"
-
+import {ReactComponent as Loader} from "../../assets/loading.svg"
 
 function TimeButton() {
     const sub = useSubscription(SLEEP_CHANGED);
-    const { loading, error, data, refetch } = useQuery(SleepTimes,{pollInterval:300});
+    const { loading, error, data, refetch, networkStatus } = useQuery(SleepTimes,{pollInterval:30000,notifyOnNetworkStatusChange:true});
     const [createSleepHook, { slp_data }] = useMutation(createSleep);
     const [sleepObj, setSleepObj] = useState({ type: "", last_load: new Date(0)});
   
@@ -22,9 +22,7 @@ function TimeButton() {
         }
       }
     }, [data, sub.data]);
-  
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
+
     // function displayTime() {
     //   let date = new Date();
     //   let time = date.toLocaleTimeString();
@@ -58,10 +56,11 @@ function TimeButton() {
         >
           {sleepObj.type === "start" ? "Acordou" : "Dormiu"}
         </button>
+{networkStatus === NetworkStatus.ready?
+        <button className="update_button" style={{cursor:"pointer"}} onClick={(e) => {setSleepObj({...sleepObj,last_load: new Date()});refetch()}}>Atualizado as {createTimeString(sleepObj.last_load)}</button>:<Loader className="loader"></Loader>
+        
 
-        <button className="update_button" style={{cursor:"pointer"}} onClick={(e) => {console.log("ref");refetch()}}>Atualizado as {createTimeString(sleepObj.last_load)}</button>
-
-        {/* <NumberInv></NumberInv> */}
+}        {/* <NumberInv></NumberInv> */}
       </div>
     );
   }
