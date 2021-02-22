@@ -8,7 +8,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { ReactComponent as Loader } from "../../assets/loading.svg";
 
-import d3 from "d3"
+import plotFunc from "../plot/plot_function"
 
 const createDate = (time) => {
   const date = new Date(time);
@@ -37,7 +37,8 @@ function TimeButton() {
             ...data.sleeps[data.sleeps.length - 1],
             last_load: new Date(),
           });
-          console.log(createTimeSeries(data.sleeps));
+          console.log(createTimeSeries(data.sleeps))
+          plotFunc(createTimeSeries(data.sleeps),".plot");
         }
       }
     }
@@ -92,7 +93,7 @@ function TimeButton() {
 ) : (
             <Loader className="loader"></Loader>
           )}
-            <div className="plot"></div>
+            <div className="plot" id="plot"></div>
 
         </div>
       )}
@@ -105,13 +106,10 @@ const TimeCalculator = (time_array) => {
     (accum, time, i) => {
       if (i > 0) {
         const this_time = time.time - time_array[i - 1].time;
-        console.log(accum, i, time.time - time_array[i - 1].time, time.time, time.type);
 
         if (time.type === "end") {
-            console.log(i)
           return { ...accum, asleep: accum.asleep + this_time };
         } else {
-            console.log(i)
           return { ...accum, awake: accum.awake + this_time };
         }
       } else {
