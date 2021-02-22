@@ -1,0 +1,16 @@
+{
+  "short_name": "Sono da Morena",
+  "name": "Sono da Morena",
+  "icons": [
+    
+    {
+      "src": "heart-icon.png",
+      "type": "image/png",
+      "sizes": "512x512 192x192 64x64 32x32 24x24 16x16"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
