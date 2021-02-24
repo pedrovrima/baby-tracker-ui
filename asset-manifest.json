@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/baby-tracker-ui/static/css/main.ae0110a4.chunk.css",
-    "main.js": "/baby-tracker-ui/static/js/main.e3503bfa.chunk.js",
-    "main.js.map": "/baby-tracker-ui/static/js/main.e3503bfa.chunk.js.map",
+    "main.css": "/baby-tracker-ui/static/css/main.7debabf1.chunk.css",
+    "main.js": "/baby-tracker-ui/static/js/main.d4b9293d.chunk.js",
+    "main.js.map": "/baby-tracker-ui/static/js/main.d4b9293d.chunk.js.map",
     "runtime~main.js": "/baby-tracker-ui/static/js/runtime~main.48490ad3.js",
     "runtime~main.js.map": "/baby-tracker-ui/static/js/runtime~main.48490ad3.js.map",
-    "static/js/2.804dccc8.chunk.js": "/baby-tracker-ui/static/js/2.804dccc8.chunk.js",
-    "static/js/2.804dccc8.chunk.js.map": "/baby-tracker-ui/static/js/2.804dccc8.chunk.js.map",
+    "static/js/2.feba1d90.chunk.js": "/baby-tracker-ui/static/js/2.feba1d90.chunk.js",
+    "static/js/2.feba1d90.chunk.js.map": "/baby-tracker-ui/static/js/2.feba1d90.chunk.js.map",
     "static/js/3.5ca8d887.chunk.js": "/baby-tracker-ui/static/js/3.5ca8d887.chunk.js",
     "static/js/3.5ca8d887.chunk.js.map": "/baby-tracker-ui/static/js/3.5ca8d887.chunk.js.map",
     "index.html": "/baby-tracker-ui/index.html",
-    "precache-manifest.b872b4b9b5eba5275941eb31478d06ee.js": "/baby-tracker-ui/precache-manifest.b872b4b9b5eba5275941eb31478d06ee.js",
+    "precache-manifest.1e66e3d07dbdd94aa4bb7aec3168af58.js": "/baby-tracker-ui/precache-manifest.1e66e3d07dbdd94aa4bb7aec3168af58.js",
     "service-worker.js": "/baby-tracker-ui/service-worker.js",
-    "static/css/main.ae0110a4.chunk.css.map": "/baby-tracker-ui/static/css/main.ae0110a4.chunk.css.map",
+    "static/css/main.7debabf1.chunk.css.map": "/baby-tracker-ui/static/css/main.7debabf1.chunk.css.map",
     "static/media/loading.e36afe81.svg": "/baby-tracker-ui/static/media/loading.e36afe81.svg"
   }
 }
