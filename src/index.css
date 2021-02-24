@@ -12,22 +12,67 @@ code {
     monospace;
 }
 
+.container h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 0.1rem;
+}
+
+
 .but {
   border:none;
-  font-size: 2rem;
+  /* font-size: 2rem; */
   align-items: center;
   box-shadow: 
     12px 12px 16px  rgba(0, 0, 0, 0.25),
     -8px -8px 12px  rgba(255, 255, 255, 0.3);
   border-radius: 15vh;
   display: flex;
+  flex-direction: column;
   height: 30vh;
-  justify-content: center;
+  justify-content: flex-end;
   width: 30vh;
   font-weight: bold;
   cursor: pointer;
-  margin-bottom: 5vh;
+  margin-bottom: 3vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
 
+
+}
+
+
+.change-time-button{
+  border:none;
+  margin: 2px;
+  padding: 5px;
+  height: 10vh;
+  width: 5vh;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.but h1{
+  font-size:2rem;
+  margin:0;
+}
+
+.other-time-button{
+  border:none;
+  background-color: inherit ;
+  padding-bottom:5vh;
+  font-size: 1rem;
+}
+
+
+.other-time-button:focus{
+  border:none;
+    }
+
+
+.but h3{
+margin:0;
+  font-size:1.5rem;
 }
 
 .but:focus {
@@ -66,6 +111,24 @@ code {
 }
 
 
+.container-green .change-time-button{
+  color: #46542f;
+  background-color: inherit ;
+
+}
+
+.container-blue .change-time-button{
+  background-color: inherit ;
+  color: #18282a;
+
+}
+
+.hidden{
+  visibility: hidden !important;
+}
+
+
+
 .container-blue h1 {
   color: #305155;
 
@@ -96,13 +159,6 @@ code {
 .update_button:focus{
   border:none;
 }
-
-.container h1 {
-  text-align: center;
-  font-size: 3rem;
-  margin-bottom: 0.1rem;
-}
-
 .container h3 {
   margin-bottom: 10vh;
   margin-top:0;
@@ -122,4 +178,23 @@ code {
 .container-green .loader {
   fill: #697e46;
 
+}
+
+
+.button-grid{
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+}
+
+.central-button-flex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.set-time-flex{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
 }
